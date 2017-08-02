@@ -88,9 +88,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-# import time
-# import os
-# if not os.path.exists('logs'):
-#     os.mkdir('logs')
-# LOG_STDOUT = True
-# LOG_FILE = "%s/%s_%s.txt" % ('logs', 'log', time.strftime('%Y-%m-%d-%H-%M-%S'))
+import time
+import os
+if not os.path.exists('logs'):
+    os.mkdir('logs')
+LOG_STDOUT = True
+LOG_FILE = "%s/%s_%s.txt" % ('logs', 'log', time.strftime('%Y-%m-%d-%H-%M-%S'))
