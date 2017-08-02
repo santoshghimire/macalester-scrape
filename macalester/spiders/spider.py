@@ -51,6 +51,8 @@ class MSpider(scrapy.Spider):
         return name
 
     def split_names(self, full_name):
+        if not full_name:
+            return None, None, None
         name_parts = full_name.split(" ")
         first_name = name_parts[0]
         if len(name_parts) == 1:
