@@ -20,7 +20,13 @@ class MacalesterPipeline(object):
         Process each item, drop items that are already seen.
         """
         if item not in self.items_seen:
-            self.items_seen.append(item)
-            return item
+            if (
+                not item['first_name'] and not item['middle_name'] and
+                not item['last_name'] and not item['email']
+            ):
+                raise DropItem("Empty item dropped")
+            else:
+                self.items_seen.append(item)
+                return item
         else:
             raise DropItem("Item Dropped")

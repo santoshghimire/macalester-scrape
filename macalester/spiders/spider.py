@@ -42,7 +42,10 @@ class MSpider(scrapy.Spider):
             index = self.all_names.index(name)
         except:
             index = -1
-        return self.all_names[index + 1]
+        if index == len(self.all_names) - 1:
+            return False
+        else:
+            return self.all_names[index + 1]
 
     def get_name_from_url(self, url):
         qs = url.split("?")[-1]
@@ -91,6 +94,9 @@ class MSpider(scrapy.Spider):
             print("{}: Records found, crawling".format(name))
         # Scrape for next name
         next_name = self.get_next_name(name)
-        next_url = self.get_default_url(next_name)
-        yield scrapy.Request(
-            next_url, self.parse, dont_filter=True)
+        if not next_name:
+            return
+        else:
+            next_url = self.get_default_url(next_name)
+            yield scrapy.Request(
+                next_url, self.parse, dont_filter=True)
